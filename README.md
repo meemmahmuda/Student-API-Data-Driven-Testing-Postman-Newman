@@ -97,18 +97,14 @@ Each iteration runs 35 assertions: 17 for Create Student, 6 for Update Student, 
 
 ```
 .
-├── collection/
-│   └── Student_DDT.postman_collection.json
-├── environment/
-│   └── Student_DDT.postman_environment.json
-├── data/
-│   └── student_data.csv
-├── reports/
+│   ── Student_DDT.postman_collection.json
+│   ── Student_DDT.postman_environment.json
+│   ── all.json
+├── newman/
 │   └── Student_DDT-2026-10-23-12-13-42-786-0.html
 └── README.md
 ```
 
-> Adjust the folder and file names to match your repository.
 
 ---
 
