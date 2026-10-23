@@ -1,0 +1,475 @@
+{
+  "info": {
+    "_postman_id": "a9af6811-926d-4dea-ab2d-182f5f82f4af",
+    "name": "Student_DDT",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "59019255",
+    "_collection_link": "https://go.postman.co/collection/59019255-a9af6811-926d-4dea-ab2d-182f5f82f4af?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Create Student",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// Random First Name\r",
+              "var firstName = pm.iterationData.get('first_name');\r",
+              "pm.environment.set(\"fName\", firstName);\r",
+              "\r",
+              "// Random Middle Name\r",
+              "var middleName = pm.iterationData.get('middle_name');\r",
+              "pm.environment.set(\"mName\", middleName);\r",
+              "\r",
+              "// Random Last Name\r",
+              "var lastName = pm.iterationData.get('last_name');\r",
+              "pm.environment.set(\"lName\", lastName);\r",
+              "\r",
+              "// Random Date of Birth\r",
+              "var dob = pm.iterationData.get('date_of_birth');\r",
+              "pm.environment.set(\"dateofbirth\", dob);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var responsebody = pm.response.json();\r",
+              "pm.environment.set(\"id\",responsebody.id);\r",
+              "\r",
+              "\r",
+              "// Assertion for status code\r",
+              "pm.test(\"Verify that Status code is 201 or not\", function () {\r",
+              "    pm.response.to.have.status(201);\r",
+              "});\r",
+              "\r",
+              "// Assertion for time\r",
+              "pm.test(\"Verify that the response time is below 500ms\", function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+              "});\r",
+              "\r",
+              "// Assertion for size\r",
+              "pm.test(\"Verify that the response size is below 1000B\", function () {\r",
+              "    pm.expect(pm.response.responseSize).to.be.below(1000);\r",
+              "});\r",
+              "\r",
+              "// Assertion for first name\r",
+              "var responsebody = pm.response.json();\r",
+              "pm.test(\"Verify that the response first name is same as environment\", function () {\r",
+              "    pm.expect(pm.environment.get(\"fName\")).to.eql(responsebody.first_name);\r",
+              "});\r",
+              "\r",
+              "// Assertion for middle name\r",
+              "var responsebody = pm.response.json();\r",
+              "pm.test(\"Verify that the response middle name is same as environment\", function () {\r",
+              "    pm.expect(pm.environment.get(\"mName\")).to.eql(responsebody.middle_name);\r",
+              "});\r",
+              "\r",
+              "// Assertion for last name\r",
+              "pm.test(\"Verify that the response last name is same as environment\", function () {\r",
+              "    pm.expect(pm.environment.get(\"lName\")).to.eql(responsebody.last_name);\r",
+              "});\r",
+              "\r",
+              "// Assertion for Date of birth\r",
+              "pm.test(\"Verify that the response date of birth is same as environment\", function () {\r",
+              "    pm.expect(pm.environment.get(\"dateofbirth\")).to.eql(responsebody.date_of_birth);\r",
+              "});\r",
+              "\r",
+              "// Assertion for firstname is string\r",
+              "pm.test(\"Verify first name is a string\", function () {\r",
+              "    pm.expect(responsebody.first_name).to.be.a(\"string\");\r",
+              "});\r",
+              "\r",
+              "// Assertion for middle name is string\r",
+              "pm.test(\"Verify middle name is a string\", function () {\r",
+              "    pm.expect(responsebody.middle_name).to.be.a(\"string\");\r",
+              "});\r",
+              "\r",
+              "// Assertion for lastname is string\r",
+              "pm.test(\"Verify last name is a string\", function () {\r",
+              "    pm.expect(responsebody.last_name).to.be.a(\"string\");\r",
+              "});\r",
+              "\r",
+              "// Assertion for date of birth is string\r",
+              "pm.test(\"Verify date of birth is a string\", function () {\r",
+              "    pm.expect(responsebody.date_of_birth).to.be.a(\"string\");\r",
+              "});\r",
+              "\r",
+              "// Assertion for response body is an object\r",
+              "pm.test(\"Verify response body is an object\", function () {\r",
+              "    pm.expect(responsebody).to.be.an(\"object\");\r",
+              "    pm.expect(responsebody).to.not.be.an(\"array\");\r",
+              "});\r",
+              "\r",
+              "// Assertion for id is a number\r",
+              "pm.test(\"Verify ID is a number\", function () {\r",
+              "    pm.expect(responsebody.id).to.be.a(\"number\");\r",
+              "});\r",
+              "\r",
+              "// Assertion for first name is not empty\r",
+              "pm.test(\"Verify first name is not empty\", function () {\r",
+              "    pm.expect(responsebody.first_name).to.not.equal(\"\");\r",
+              "});\r",
+              "\r",
+              "// Assertion for middle name is not empty\r",
+              "pm.test(\"Verify middle name is not empty\", function () {\r",
+              "    pm.expect(responsebody.middle_name).to.not.equal(\"\");\r",
+              "});\r",
+              "\r",
+              "// Assertion for last name is not empty\r",
+              "pm.test(\"Verify last name is not empty\", function () {\r",
+              "    pm.expect(responsebody.last_name).to.not.equal(\"\");\r",
+              "});\r",
+              "\r",
+              "// Assertion for date of birth is not empty\r",
+              "pm.test(\"Verify date of birth is not empty\", function () {\r",
+              "    pm.expect(responsebody.date_of_birth).to.not.equal(\"\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"first_name\": \"{{fName}}\",\r\n  \"middle_name\": \"{{mName}}\",\r\n  \"last_name\": \"{{lName}}\",\r\n  \"date_of_birth\": \"{{dateofbirth}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://thetestingworldapi.com/api/studentsDetails",
+          "protocol": "https",
+          "host": [
+            "thetestingworldapi",
+            "com"
+          ],
+          "path": [
+            "api",
+            "studentsDetails"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Student",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// Random First Name\r",
+              "var firstName = pm.iterationData.get('put_first_name');\r",
+              "pm.environment.set(\"fName\", firstName);\r",
+              "\r",
+              "// Random Middle Name\r",
+              "var middleName = pm.iterationData.get('put_middle_name');\r",
+              "pm.environment.set(\"mName\", middleName);\r",
+              "\r",
+              "// Random Last Name\r",
+              "var lastName = pm.iterationData.get('put_last_name');\r",
+              "pm.environment.set(\"lName\", lastName);\r",
+              "\r",
+              "// Random Date of Birth\r",
+              "var dob = pm.iterationData.get('put_date_of_birth');\r",
+              "pm.environment.set(\"dateofbirth\", dob);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var responsebody = pm.response.json();\r",
+              "\r",
+              "// Assertion for status code\r",
+              "pm.test(\"Verify that Status code is 200 or 403\", function () {\r",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 403]);\r",
+              "});\r",
+              "\r",
+              "// Assertion for time\r",
+              "pm.test(\"Verify that the response time is below 500ms\", function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+              "});\r",
+              "\r",
+              "// Assertion for size\r",
+              "pm.test(\"Verify that the response size is below 1000B\", function () {\r",
+              "    pm.expect(pm.response.responseSize).to.be.below(1000);\r",
+              "});\r",
+              "\r",
+              "// Assertion for update status is true\r",
+              "pm.test(\"Verify update status is true\", function () {\r",
+              "    pm.expect(responsebody.status).to.eql(\"true\");\r",
+              "});\r",
+              "\r",
+              "// Assertion for success message is as expected\r",
+              "pm.test(\"Verify update success message\", function () {\r",
+              "    pm.expect(responsebody.msg).to.eql(\"update  data success\");\r",
+              "});\r",
+              "\r",
+              "// Assertion for response body is not empty\r",
+              "pm.test(\"Verify response body is not empty\", function () {\r",
+              "pm.expect(responsebody).to.not.be.empty;\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"id\": {{id}},\r\n  \"first_name\": \"{{fName}}\",\r\n  \"middle_name\": \"{{mName}}\",\r\n  \"last_name\": \"{{lName}}\",\r\n  \"date_of_birth\": \"{{dateofbirth}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://thetestingworldapi.com/api/studentsDetails/{{id}}",
+          "protocol": "https",
+          "host": [
+            "thetestingworldapi",
+            "com"
+          ],
+          "path": [
+            "api",
+            "studentsDetails",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Technical Skills",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// Random First language\r",
+              "var firstLanguage = pm.iterationData.get('fLanguage');\r",
+              "pm.environment.set(\"fLanguage\", firstLanguage);\r",
+              "\r",
+              "// Random Second Language\r",
+              "var secondLanguage = pm.iterationData.get('sLanguage');\r",
+              "pm.environment.set(\"sLanguage\", secondLanguage);\r",
+              "\r",
+              "// Random Year Experience\r",
+              "var yexp = pm.iterationData.get('yearexp');\r",
+              "pm.environment.set(\"yearexperience\", yexp);\r",
+              "\r",
+              "// Random last used\r",
+              "var lused = pm.iterationData.get('lastused');\r",
+              "pm.environment.set(\"lastused\", lused);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var responsebody = pm.response.json();\r",
+              "\r",
+              "// Assertion for status code\r",
+              "pm.test(\"Verify that Status code is 201 or not\", function () {\r",
+              "    pm.response.to.have.status(201);\r",
+              "});\r",
+              "\r",
+              "// Assertion for time\r",
+              "pm.test(\"Verify that the response time is below 5000ms\", function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+              "});\r",
+              "\r",
+              "// Assertion for size\r",
+              "pm.test(\"Verify that the response size is below 1000B\", function () {\r",
+              "    pm.expect(pm.response.responseSize).to.be.below(1000);\r",
+              "});\r",
+              "\r",
+              "// Assertion for response body is an object\r",
+              "pm.test(\"Verify response body is an object\", function () {\r",
+              "    pm.expect(responsebody).to.be.an(\"object\");\r",
+              "    pm.expect(responsebody).to.not.be.an(\"array\");\r",
+              "});\r",
+              "\r",
+              "// Verify status is true\r",
+              "pm.test(\"Verify status is true\", function () {\r",
+              "pm.expect(responsebody.status).to.eql(\"true\");\r",
+              "});\r",
+              "\r",
+              "// Verify success message\r",
+              "pm.test(\"Verify success message\", function () {\r",
+              "pm.expect(responsebody.msg).to.include(\"success\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": {{id}},\r\n    \"language\": [\r\n        \"{{fLanguage}}\",\r\n        \"{{sLanguage}}\"\r\n    ],\r\n    \"yearexp\": \"{{yearexperience}}\",\r\n    \"lastused\": \"{{lastused}}\",\r\n    \"st_id\": \"{{id}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://thetestingworldapi.com/api/technicalskills",
+          "protocol": "https",
+          "host": [
+            "thetestingworldapi",
+            "com"
+          ],
+          "path": [
+            "api",
+            "technicalskills"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Student Address",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// Random House Number\r",
+              "var houseNumber = pm.iterationData.get('House_Number');\r",
+              "pm.environment.set(\"hNumber\", houseNumber);\r",
+              "\r",
+              "// Random City\r",
+              "var rcity = pm.iterationData.get('City');\r",
+              "pm.environment.set(\"city\", rcity);\r",
+              "\r",
+              "// Random State\r",
+              "var state = pm.iterationData.get('State');\r",
+              "pm.environment.set(\"state\", state);\r",
+              "\r",
+              "// Random Country\r",
+              "var country = pm.iterationData.get('Country');\r",
+              "pm.environment.set(\"country\", country);\r",
+              "\r",
+              "// Random Std_Code\r",
+              "var Std_Code = pm.iterationData.get('Std_Code');\r",
+              "pm.environment.set(\"Std_Code\", Std_Code);\r",
+              "\r",
+              "// Random Home Phone Number\r",
+              "var homePhone = pm.iterationData.get('Home');\r",
+              "pm.environment.set(\"homePhone\", homePhone);\r",
+              "\r",
+              "// Random Mobile Number\r",
+              "var mobileNumber = pm.iterationData.get('Mobile');\r",
+              "pm.environment.set(\"mobileNumber\", mobileNumber);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var responsebody = pm.response.json();\r",
+              "\r",
+              "// Assertion for status code\r",
+              "pm.test(\"Verify that Status code is 201 or not\", function () {\r",
+              "    pm.response.to.have.status(201);\r",
+              "});\r",
+              "\r",
+              "// Assertion for time\r",
+              "pm.test(\"Verify that the response time is below 5000ms\", function () {\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+              "});\r",
+              "\r",
+              "// Assertion for size\r",
+              "pm.test(\"Verify that the response size is below 1000B\", function () {\r",
+              "    pm.expect(pm.response.responseSize).to.be.below(1000);\r",
+              "});\r",
+              "\r",
+              "// Assertion for response body is an object\r",
+              "pm.test(\"Verify response body is an object\", function () {\r",
+              "    pm.expect(responsebody).to.be.an(\"object\");\r",
+              "    pm.expect(responsebody).to.not.be.an(\"array\");\r",
+              "});\r",
+              "\r",
+              "// Verify status is true\r",
+              "pm.test(\"Verify status is true\", function () {\r",
+              "pm.expect(responsebody.status).to.eql(\"true\");\r",
+              "});\r",
+              "\r",
+              "// Verify success message\r",
+              "pm.test(\"Verify success message\", function () {\r",
+              "pm.expect(responsebody.msg).to.include(\"success\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"Permanent_Address\": { \r\n        \"House_Number\": \"{{hNumber}}\",\r\n        \"City\": \"{{city}}\",\r\n        \"State\": \"{{state}}\", \r\n        \"Country\": \"{{country}}\",\r\n        \"PhoneNumber\": [ \r\n            { \r\n            \"Std_Code\": \"+88\",\r\n            \"Home\": \"{{homePhone}}\",\r\n            \"Mobile\": \"{{mobileNumber}}\" \r\n            },\r\n            { \r\n            \"Std_Code\": \"+88\",\r\n            \"Home\": \"{{homePhone}}\", \r\n            \"Mobile\": \"{{mobileNumber}}\" \r\n            } \r\n        ] \r\n    },\r\n    \"stId\":  \"{{id}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://thetestingworldapi.com/api/addresses/{{id}}",
+          "protocol": "https",
+          "host": [
+            "thetestingworldapi",
+            "com"
+          ],
+          "path": [
+            "api",
+            "addresses",
+            "{{id}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
