@@ -196,7 +196,7 @@ In the request body, use the variable with double curly braces, for example `{{f
 Open the generated file in any browser:
 
 ```
-reports/Student_DDT-2026-10-23-12-13-42-786-0.html
+newman/Student_DDT-2026-10-23-12-13-42-786-0.html
 ```
 
 The report includes:
@@ -207,12 +207,6 @@ The report includes:
 - Per-iteration and per-request details: method, URL, headers, request body, response body and assertion results
 - Light and dark theme toggle
 
-### Optional: Host the report with GitHub Pages
-
-1. Copy the report to a `docs/` folder and rename it to `index.html`.
-2. In your repository go to **Settings > Pages**.
-3. Select the branch and the `/docs` folder, then save.
-4. The report will be available at `https://<username>.github.io/<repository>/`.
 
 ---
 
@@ -236,5 +230,5 @@ The report includes:
 
 ## Author
 
-**Your Name**
-GitHub: [@your-username](https://github.com/your-username)
+**meemmahmuda**
+GitHub: [@meemmahmuda](https://github.com/meemmahmuda)
