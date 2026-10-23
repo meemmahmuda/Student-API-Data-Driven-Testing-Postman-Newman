@@ -132,11 +132,11 @@ newman --version
 Run the collection with the environment and the data file, then generate the HTML report:
 
 ```bash
-newman run collection/Student_DDT.postman_collection.json \
-  -e environment/Student_DDT.postman_environment.json \
-  -d data/student_data.csv \
-  -r htmlextra \
-  --reporter-htmlextra-export reports/
+newman run Student_DDT.postman_collection.json
+  -e Student_DDT.postman_environment.json
+  -d all.json
+  -r htmlextra
+  --reporter-htmlextra-export reports
 ```
 
 The `-d` option points to the data file. Newman runs one iteration for each row in it.
@@ -144,17 +144,17 @@ The `-d` option points to the data file. Newman runs one iteration for each row 
 ### Run with CLI output only
 
 ```bash
-newman run collection/Student_DDT.postman_collection.json \
-  -e environment/Student_DDT.postman_environment.json \
-  -d data/student_data.csv
+newman run Student_DDT.postman_collection.json
+  -e Student_DDT.postman_environment.json
+  -d all.json
 ```
 
 ### Run only a fixed number of iterations
 
 ```bash
-newman run collection/Student_DDT.postman_collection.json \
-  -e environment/Student_DDT.postman_environment.json \
-  -d data/student_data.csv \
+newman run Student_DDT.postman_collection.json
+  -e Student_DDT.postman_environment.json
+  -d all.json
   -n 2
 ```
 
@@ -162,13 +162,29 @@ newman run collection/Student_DDT.postman_collection.json \
 
 ## Data File Format
 
-CSV example (column names must match the variables used in the collection):
+The data file is a JSON array. Each object is one iteration (one data row). Example:
 
-```csv
-first_name,middle_name,last_name,date_of_birth
-Mr.,Mark,Zukurburg,1987-05-23
-Ms.,Adam,Cruz,1990-05-23
-Mahmuda,Binte,Sayeed,1998-05-23
+```
+[
+  {
+    "first_name": "Mr.",
+    "middle_name": "Mark",
+    "last_name": "Zukurburg",
+    "date_of_birth": "1987-05-23"
+  },
+  {
+    "first_name": "Ms.",
+    "middle_name": "Adam",
+    "last_name": "Cruz",
+    "date_of_birth": "1990-05-23"
+  },
+  {
+    "first_name": "Mahmuda",
+    "middle_name": "Binte",
+    "last_name": "Sayeed",
+    "date_of_birth": "1998-05-23"
+  }
+]
 ```
 
 In the request body, use the variable with double curly braces, for example `{{first_name}}`. In test scripts, read the value with `pm.iterationData.get("first_name")`.
