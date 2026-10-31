@@ -4,6 +4,10 @@ Data Driven Test (DDT) automation for the **Student Management API** (`https://t
 
 ---
 
+## Newman Test Report
+
+<img src="Newman Summary Report.png" alt="My_Collection Newman Report" width="800">
+
 ## Latest Test Run Summary
 
 | Metric | Result |
